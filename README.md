@@ -29,6 +29,13 @@ A simple GraphQL API for managing tasks using **FastAPI**, **Strawberry GraphQL*
     source venv/bin/activate
     # Windows
     venv\Scripts\activate
+If you encounter the following error when running: The virtual environment was not created successfully because ensurepip is not available.
+
+
+You can fix it by installing the python3.10-venv package:
+    
+    sudo apt install python3.10-venv
+
 3. Install dependencies:
     ```bash
     pip install -r requirements.txt
