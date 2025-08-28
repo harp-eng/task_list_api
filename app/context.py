@@ -6,4 +6,4 @@ async def get_context(request: Request):
     try:
         return {"db": db, "request": request}
     finally:
-        db.close()  # closes DB session automatically
+        db.close() 
