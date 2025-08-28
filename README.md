@@ -88,3 +88,61 @@ A simple GraphQL API for managing tasks using **FastAPI**, **Strawberry GraphQL*
             title
         }
     }
+
+
+### Error Handling
+
+Right now, the system handles basic errors like:
+
+1) Returning null if a task ID doesn’t exist when trying to toggle or delete a task.
+
+2) Returning an empty list if no tasks match a search or query.
+
+###  For more advanced error handling, we can do the following:
+
+1) Custom GraphQL Errors
+
+    Use Strawberry’s custom exceptions to show clear error messages.
+
+    Example: If a task title is empty or too long, return a helpful message explaining the problem.
+    ```
+    class TaskError(Exception):
+        def __init__(self, message: str):
+            self.message = message
+
+    if not title.strip():
+            raise TaskError("Task title cannot be empty.")
+    if len(title) > 50:
+            raise TaskError("Task title cannot be longer than 50 characters.")
+
+2) Logging and Monitoring
+
+    Keep a log of all errors using Python’s logging module or services like Sentry.
+
+    Track failed GraphQL requests and mutations so we can find and fix the issues.
+
+### Additional queries or mutations 
+
+1) Next mutation we can add to update the title of existing Task.
+    In resolver file 
+    ```
+       @strawberry.mutation
+        def update_task(self, info: Info, id: strawberry.ID, title: Optional[str] = None, completed: Optional[bool] = None) -> Optional[TaskType]:
+            db = info.context["db"]
+            task = update_task(db, int(id), title, completed)
+            return TaskType.from_model(task) if task else None
+
+    
+In service file
+```
+    def update_task(db: Session, task_id: int, title: str | None = None, completed: bool | None = None) -> Task | None:
+    task = db.get(Task, task_id)
+    if task:
+        if title is not None:
+            task.title = title
+        if completed is not None:
+            task.completed = completed
+        db.commit()
+        db.refresh(task)
+    return task
+
