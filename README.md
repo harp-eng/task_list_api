@@ -24,7 +24,7 @@ A simple GraphQL API for managing tasks using **FastAPI**, **Strawberry GraphQL*
     cd task_list_api
 2. Create and activate a virtual environment
     ```bash
-    python -m venv venv
+    python3 -m venv venv
     # Linux/Mac
     source venv/bin/activate
     # Windows
@@ -75,6 +75,16 @@ A simple GraphQL API for managing tasks using **FastAPI**, **Strawberry GraphQL*
     
     mutation {
         toggleTask(id: "1") {
+            id
+            title
+            completed
+        }
+    }
+
+### Update Task
+    
+    mutation {
+        updateTask(id: "1" title:"updated first Task") {
             id
             title
             completed
