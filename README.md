@@ -54,12 +54,13 @@ Note: After running this command, start from Step 2 again.
 ##  Examples
 ### Add a Task
         mutation {
-            addTask(title: "first Task") {
+            addTask(input: { title: "first Task" }) {
                 id
                 title
                 completed
             }
         }
+
 
 
 ### List Tasks
@@ -102,7 +103,7 @@ Note: After running this command, start from Step 2 again.
 ### Update Task
     
     mutation {
-        updateTask(id: "1" title:"updated first Task") {
+        updateTask(id: "1" input: { title: "updated first Task",completed:true}) {
             id
             title
             completed

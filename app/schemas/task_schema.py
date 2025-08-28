@@ -1,5 +1,4 @@
 import strawberry
-from typing import Optional
 from app.models.task import Task
 
 @strawberry.type
@@ -19,3 +18,9 @@ class TaskType:
             created_at=task.created_at.isoformat(),
             updated_at=task.updated_at.isoformat(),
         )
+        
+# ----- Strawberry input for creating/updating tasks -----
+@strawberry.input
+class TaskInput:
+    title: str
+    completed: bool = False  # default value

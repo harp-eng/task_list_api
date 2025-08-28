@@ -1,7 +1,7 @@
 import strawberry
 from strawberry.types import Info
 from typing import List, Optional
-from app.schemas.task_schema import TaskType
+from app.schemas.task_schema import TaskType, TaskInput
 from app.services.task_service import create_task, get_task, get_tasks, toggle_task, update_task, delete_task
 
 @strawberry.type
@@ -20,11 +20,11 @@ class TaskQuery:
 @strawberry.type
 class TaskMutation:
     @strawberry.mutation
-    def add_task(self, info: Info, title: str) -> TaskType:
+    def add_task(self, info: Info, input: TaskInput) -> TaskType:
         db = info.context["db"]
-        if not title.strip():
+        if not input.title.strip():
             raise strawberry.exceptions.GraphQLError("Task title cannot be empty")
-        task = create_task(db, title)
+        task = create_task(db, input.title)
         return TaskType.from_model(task)
 
     @strawberry.mutation
@@ -34,9 +34,9 @@ class TaskMutation:
         return TaskType.from_model(task) if task else None
 
     @strawberry.mutation
-    def update_task(self, info: Info, id: strawberry.ID, title: Optional[str] = None, completed: Optional[bool] = None) -> Optional[TaskType]:
+    def update_task(self, info: Info, id: strawberry.ID, input: TaskInput) -> Optional[TaskType]:
         db = info.context["db"]
-        task = update_task(db, int(id), title, completed)
+        task = update_task(db, int(id), input.title, input.completed)
         return TaskType.from_model(task) if task else None
 
     @strawberry.mutation
