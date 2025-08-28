@@ -1,0 +1,4 @@
+fastapi
+strawberry-graphql[fastapi]
+uvicorn
+SQLAlchemy

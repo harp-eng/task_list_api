@@ -1,0 +1,34 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+ENV/
+env/
+
+# SQLite database
+*.db
+*.sqlite3
+
+# Logs
+*.log
+
+# IDE/Editor files
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+
+# Backup files
+*.bak
+*.swp
+.DS_Store
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
