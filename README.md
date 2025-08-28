@@ -43,8 +43,7 @@ A simple GraphQL API for managing tasks using **FastAPI**, **Strawberry GraphQL*
 
 
     ##  Examples
-    ### Add a Task
-    ```graphql
+### Add a Task
         mutation {
             addTask(title: "first Task") {
                 id
