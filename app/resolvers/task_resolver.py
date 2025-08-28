@@ -22,6 +22,8 @@ class TaskMutation:
     @strawberry.mutation
     def add_task(self, info: Info, title: str) -> TaskType:
         db = info.context["db"]
+        if not title.strip():
+            raise strawberry.exceptions.GraphQLError("Task title cannot be empty")
         task = create_task(db, title)
         return TaskType.from_model(task)
 
