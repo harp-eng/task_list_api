@@ -42,7 +42,7 @@ A simple GraphQL API for managing tasks using **FastAPI**, **Strawberry GraphQL*
     http://127.0.0.1:8000/graphql
 
 
-    ##  Examples
+##  Examples
 ### Add a Task
         mutation {
             addTask(title: "first Task") {
