@@ -36,6 +36,8 @@ You can fix it by installing the python3.10-venv package:
     
     sudo apt install python3.10-venv
 
+Note: After running this command, start from Step 2 again.
+
 3. Install dependencies:
     ```bash
     pip install -r requirements.txt
@@ -69,7 +71,16 @@ You can fix it by installing the python3.10-venv package:
             }
         }
 
-### Search tasks 
+### Search task by ID
+        query {
+            task(id:1){
+                id
+                title
+                completed
+            }
+        }
+
+### Search tasks by title
         query { 
             tasks(search: "first") { 
                 id 
