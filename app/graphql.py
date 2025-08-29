@@ -14,5 +14,5 @@ class Mutation(TaskMutation):
     pass
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
-graphql_app = GraphQLRouter(schema,context_getter=get_context, graphiql=True)
+graphql_app = GraphQLRouter(schema,context_getter=get_context, graphql_ide=True)
 

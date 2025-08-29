@@ -3,3 +3,5 @@ strawberry-graphql[fastapi]
 uvicorn
 SQLAlchemy
 python-dotenv
+pytest
+httpx
